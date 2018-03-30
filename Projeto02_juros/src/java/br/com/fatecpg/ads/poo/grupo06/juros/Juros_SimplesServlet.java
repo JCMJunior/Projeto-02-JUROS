@@ -35,51 +35,115 @@ public class Juros_SimplesServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Juros_SimplesServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
+            out.println("<!DOCTYPE html>"
+            +"<html>"
+            +"<head>"
+            +"<title>Servlet Juros_SimplesServlet</title>"
+            + "<link href='css/bootstrap.min.css' rel='stylesheet'>"
+            + "<link rel='stylesheet' href='css/font-awesome.min.css'>"
+            + "<link rel='stylesheet' href='css/animate.css'>"
+            + "<link rel='stylesheet' href='css/overwrite.css'>"
+            + "<link href='css/animate.min.css' rel='stylesheet'> "
+            + "<link href='css/style.css' rel='stylesheet' />"
+            +"</head>"
+            +"<body>"
             //Cálculo do Juros ao Mês
-            out.println("<h1>Cálculo de Juros Simples ao Mês</h1>");
-            out.println("<form>");
-            out.println("Valor Inicial: <input type='text'name='valorIni'/>");
-            out.println("Juros ao Mês: <input type='text' name='percent'/>");
-            out.println("Quantidade de Meses: <input type='text' name='numMes'/>");
-            out.println("<input type='submit' value='Calcular'/>");
-            out.println("</form>");
+            +"<header id='header'>"
+            +"<nav class='navbar navbar-fixed-top' role='banner'>"
+            +"<div class='container'>"
+            +"<div class='navbar-header'>"
+            +"<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>"
+            +"<span class='sr-only'>Toggle navigation</span>"
+            +"<span class='icon-bar'></span>"
+            +"<span class='icon-bar'></span>"
+            +"<span class='icon-bar'></span>"
+            +"</button>"
+            +"<a class='navbar-brand' href='home'>Calcular Juros</a>"
+            +"</div>				"
+            +"<div class='collapse navbar-collapse navbar-right'>"
+            +"<ul class='nav navbar-nav'>"
+            +"<li class='active'><a href='home'>Home</a></li>"
+            +"<li><a href='juros-simples'>Juros Simples</a></li>"
+            +"<li><a href='juros-composto'>Juros Compostos</a></li>"
+            +"</ul>"
+            +"</div>"
+            +"</div><!--/.container-->"
+            +"</nav><!--/nav-->		"
+            +"</header><!--/header-->	"
+            +"<div class='slider'>		"
+            +"<div id='about-slider'>"
+            +"<div id='carousel-slider' class='carousel slide' data-ride='carousel'>"
+            +"<!-- Indicators -->"
+            +"<ol class='carousel-indicators visible-xs'>"
+            +"<li data-target='#carousel-slider' data-slide-to='0' class='active'></li>"
+            +"<li data-target='#carousel-slider' data-slide-to='1'></li>"
+            +"<li data-target='#carousel-slider' data-slide-to='2'></li>"
+            +"</ol>"
+	    +"<div class='item'>"
+            +"<img src='img/1.jpg' class='img-responsive' alt=''> "
+            +"<div class='carousel-caption'>"
+            +"<div class='wow fadeInUp' data-wow-offset='0' data-wow-delay='0.3s'>"
+            + "<h2 style=\"color:black;\" ><span>Juros Simples</span></h2>"
+            +"</div>"
+            +"</div>"
+            +"</div>"
+	    +"</div>"
+            +"</div>"
+            +"<a class='left carousel-control hidden-xs' href='#carousel-slider' data-slide='prev'>"
+            +"<i class='fa fa-angle-left'></i> "
+            +"</a>"	
+            +"<a class='right carousel-control hidden-xs'href='#carousel-slider' data-slide='next'>"
+            +"<i class='fa fa-angle-right'></i> "
+            +"</a>"
+            +"</div> <!--/#carousel-slider-->"
+            +"<center><form><table style='text-align:right; font-size:20px'>"
+            +"<td><br></td>"
+            +"<tr><td>Valor Inicial: </td><td> <input type='text' name='valorIni'/></td></tr>"
+            +"<td><br></td>"
+            +"<tr><td>Juros ao Mês (%) </td><td> <input type='text' name='percent'/></td></tr>"
+            +"<td><br></td>"
+            +"<tr><td>Período em meses: </td><td> <input type='text' name='numMes'/></td></tr>"
+            +"<td><br></td>"
+            +"<tr><td colspan='2'><center><input type='submit' value='Calcular'/><center></td></tr>"
+            +"<td><br></td>"
+            +"");
             try{
                 valorIni = Double.parseDouble(request.getParameter("valorIni"));
                 percent = Double.parseDouble(request.getParameter("percent"));
                 numMes = Double.parseDouble(request.getParameter("numMes"));
-            }catch(Exception e){}
+            }catch(Exception ex){}
+            String numero ;
             valorTotal1 = valorIni+(valorIni*(percent/100)*numMes);
-            valorJuros1 = valorIni*(percent/100)*numMes;
-            out.println("<h2>Valor total do Montante: "+valorTotal1+"<h2>");
-            out.println("<h2>Valor do Juros ao Mês: "+valorJuros1+"<h2>");
+            valorJuros1 = (valorIni*(percent/100)*numMes); 
+            out.println("<tr><td>Valor total do Montante: R$"+valorTotal1+"</td></tr>"
+            +"<td><br></td>"
+            +"<tr><td>Valor do Juros ao Mês: R$"+valorJuros1+"</td></tr>"
+            +"<td><br></td>"
             //Calculo do Juros ao Ano
-            out.println("<h1>Cálculo de Juros ao Ano</h1>");
-            out.println("<form>");
-            out.println("Valor Inicial: <input type='text'name='valorIni2'/>");
-            out.println("Juros ao Ano: <input type='text' name='percent2'/>");
-            out.println("Quantidade de Dias: <input type='text' name='numDia'/>");
-            out.println("<input type='submit' value='Calcular'/>");
-            out.println("</form>");
+            
+            +"<h1>Cálculo de Juros ao Ano</h1>"
+            +"<center><form><table style='text-align:right; font-size:20px'>"
+            +"<td><br></td>"
+            +"<tr><td>Valor Inicial: </td><td> <input type='text' name='valorIni2'/></td></tr>"
+            +"<td><br></td>"
+            +"<tr><td>Juros ao Ano (%) </td><td> <input type='text' name='percent2'/></td></tr>"
+            +"<td><br></td>"
+            +"<tr><td>Período em dias: </td><td> <input type='text' name='numDia'/></td></tr>"
+            +"<td><br></td>"
+            +"<tr><td colspan='2'><center><input type='submit' value='Calcular'/><center></td></tr>"
+            +"<td><br></td>");        
             try{
                 valorIni2 = Double.parseDouble(request.getParameter("percent2"));
                 percent2 = Double.parseDouble(request.getParameter("percent2"));
                 numDia = Double.parseDouble(request.getParameter("numDia"));
-            }catch(Exception e){}
+            }catch(Exception ex){}
             valorTotal2 = valorIni2+(valorIni2*((percent2/100)*(numDia/365)));
             valorJuros2 = valorIni2*((percent2/100)*(numDia/365));
-            out.println("<h2>Valor total do Montante: "+valorTotal2+"<h2>");
-            out.println("<h2>Valor do Juros ao Ano: "+valorJuros2+"<h2>");
-            
-            out.println("");
-            
-            out.println("</body>");
-            out.println("</html>");
+           out.println("<tr><td>Valor total do Montante: R$"+valorTotal2+"</td></tr>"
+            +"<td><br></td>"
+            +"<tr><td>Valor do Juros ao Ano: R$"+valorJuros2+"</td></tr>"
+            +"<td><br></td>"
+            +"</html>");
         }
     }
 
