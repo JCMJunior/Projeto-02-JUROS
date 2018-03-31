@@ -42,6 +42,20 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 	        animation-duration: 2s;
 }
 
+.flex-container {
+    display: -webkit-flex;
+    display: flex;  
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    font-weight: bold;
+    text-align: center;
+}
+
+.flex-container > * {
+    padding: 30px;
+    flex: 1 100px;
+}
+
 @-webkit-keyframes flash {
 	0%, 50%, 100% {opacity: 1;}	
 	25%, 75% {opacity: 0;}
