@@ -92,7 +92,7 @@ public class HomeServlet extends HttpServlet {
                     + "</div>"
                     + "<div class='form-group'>"
                     + "<button type='getnow' name='Get Now' "
-                    + "class='btn btn-primary btn-lg' required='required'>Juros Composto</button>"
+                    + "class='btn btn-primary btn-lg' required='required'>Juros Compostos</button>"
                     + "</div>"
                     + "</form>"
                     + "</div>"
