@@ -101,7 +101,7 @@ out.println("<!DOCTYPE html>"
 			+"</div> <!--/#carousel-slider-->"
                     +"</br>"
             +"<div class='flex-container'>"
-            +"<center><table style='text-align:right; font-size:20px'>"
+            +"<center><form><table style='text-align:right; font-size:20px'>"
             +"<td><br></td>"
                         +"<tr><td>Taxa de Juros (%): </td><td> <input type='text' name='juros'/></td></tr>"
                         +"<td><br></td>"
@@ -134,8 +134,7 @@ out.println("<!DOCTYPE html>"
                             +"</td><td>Parcela: " + (i+1) 
                             +"</td></tr>"
                     +"</div>"
-                            +"</br>"
-                            +"</br>");
+                            );
                         }
                         out.println("</form></table>"
             +"</div><div></div><!--/#about-slider-->"
