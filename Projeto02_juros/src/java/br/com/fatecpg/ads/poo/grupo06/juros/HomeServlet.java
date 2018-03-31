@@ -88,6 +88,7 @@ public class HomeServlet extends HttpServlet {
                     + "class='btn btn-primary btn-lg' required='required'>Juros Simples</button></a>"
                     + "</div>"
                     + "<div class='form-group'>"
+
                     + "<a  href='juros-composto' button type='getnow' name='Get Now' "
                     + "class='btn btn-primary btn-lg' required='required'>Juros Composto</button></a>"
                     + "</div>"
