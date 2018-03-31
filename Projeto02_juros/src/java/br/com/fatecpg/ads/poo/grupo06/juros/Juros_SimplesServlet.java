@@ -7,6 +7,7 @@ package br.com.fatecpg.ads.poo.grupo06.juros;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -99,7 +100,7 @@ public class Juros_SimplesServlet extends HttpServlet {
             +"</div> <!--/#carousel-slider-->"
             +"</br>"
             +"<div class='flex-container'>"
-            +"<center><table style='text-align:right; font-size:20px'>"
+            +"<center><form><table style='text-align:right; font-size:20px'>"
             +"<td><br></td>"
             +"<tr><td>Valor Inicial: </td><td> <input type='text' name='valorIni'/></td></tr>"
             +"<td><br></td>"
@@ -110,6 +111,7 @@ public class Juros_SimplesServlet extends HttpServlet {
             +"<tr><td colspan='2'><center><input type='submit' value='Calcular'/><center></td></tr>"
             +"<td><br></td>"
             +"");
+            DecimalFormat dec = new DecimalFormat();
             try{
                 valorIni = Double.parseDouble(request.getParameter("valorIni"));
                 percent = Double.parseDouble(request.getParameter("percent"));
@@ -117,10 +119,10 @@ public class Juros_SimplesServlet extends HttpServlet {
             }catch(Exception ex){}
             String numero ;
             valorTotal1 = valorIni+(valorIni*(percent/100)*numMes);
-            valorJuros1 = (valorIni*(percent/100)*numMes); 
-            out.println("<tr><td>Valor total do Montante: R$"+valorTotal1+"</td></tr>"
+            valorJuros1 = (valorIni*(percent/100)*numMes)/numMes; 
+            out.println("<tr><td>Valor total do Montante: R$ "+dec.format(valorTotal1)+"</td></tr>"
             +"<td><br></td>"
-            +"<tr><td>Valor do Juros ao Mês: R$"+valorJuros1+"</td></tr>"
+            +"<tr><td>Valor do Juros ao Mês: R$ "+dec.format(valorJuros1)+"</td></tr>"
             +"<td><br></td>"
             //Calculo do Juros ao Ano
             
@@ -142,9 +144,9 @@ public class Juros_SimplesServlet extends HttpServlet {
             }catch(Exception ex){}
             valorTotal2 = valorIni2+(valorIni2*((percent2/100)*(numDia/365)));
             valorJuros2 = valorIni2*((percent2/100)*(numDia/365));
-           out.println("<tr><td>Valor total do Montante: R$"+valorTotal2+"</td></tr>"
+           out.println("<tr><td>Valor total do Montante: R$"+dec.format(valorTotal2)+"</td></tr>"
             +"<td><br></td>"
-            +"<tr><td>Valor do Juros ao Ano: R$"+valorJuros2+"</td></tr>"
+            +"<tr><td>Valor do Juros ao Ano: R$"+dec.format(valorJuros2)+"</td></tr>"
             +"<td><br></td>"
             +"</br>"
             +"<div class='flex-container'>"
