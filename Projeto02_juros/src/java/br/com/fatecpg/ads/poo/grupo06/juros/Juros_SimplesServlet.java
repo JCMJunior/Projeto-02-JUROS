@@ -111,7 +111,7 @@ public class Juros_SimplesServlet extends HttpServlet {
             +"<tr><td colspan='2'><center><input type='submit' value='Calcular'/><center></td></tr>"
             +"<td><br></td>"
             +"");
-            DecimalFormat dec = new DecimalFormat();
+            DecimalFormat dec = new DecimalFormat("###,##0.00");
             try{
                 valorIni = Double.parseDouble(request.getParameter("valorIni"));
                 percent = Double.parseDouble(request.getParameter("percent"));
@@ -119,14 +119,17 @@ public class Juros_SimplesServlet extends HttpServlet {
             }catch(Exception ex){}
             String numero ;
             valorTotal1 = valorIni+(valorIni*(percent/100)*numMes);
-            valorJuros1 = (valorIni*(percent/100)*numMes)/numMes; 
-            out.println("<tr><td>Valor total do Montante: R$ "+dec.format(valorTotal1)+"</td></tr>"
+            valorJuros1 = (valorIni*(percent/100)*numMes)/numMes;
+            if (valorTotal1!=0 && valorJuros1!=0){            
+            out.println("<center><table style='text-align:right;font-size:20px'>"
+            + "<tr><td>Valor total do Montante: R$ "+dec.format(valorTotal1)+"</td></tr>"
             +"<td><br></td>"
             +"<tr><td>Valor do Juros ao Mês: R$ "+dec.format(valorJuros1)+"</td></tr>"
-            +"<td><br></td>"
+            +"<td><br></td>");
+                    }
             //Calculo do Juros ao Ano
             
-            +"<h1>Cálculo de Juros ao Ano</h1>"
+            out.println("<h1>Cálculo de Juros ao Ano</h1>"
             +"<center><form><table style='text-align:right; font-size:20px'>"
             +"<td><br></td>"
             +"<tr><td>Valor Inicial: </td><td> <input type='text' name='valorIni2'/></td></tr>"
@@ -144,7 +147,9 @@ public class Juros_SimplesServlet extends HttpServlet {
             }catch(Exception ex){}
             valorTotal2 = valorIni2+(valorIni2*((percent2/100)*(numDia/365)));
             valorJuros2 = valorIni2*((percent2/100)*(numDia/365));
-           out.println("<tr><td>Valor total do Montante: R$"+dec.format(valorTotal2)+"</td></tr>"
+            if (valorTotal1!=0 && valorJuros1!=0){
+           out.println("<center><table style='text-align:right;font-size:20px'>"
+            + "<tr><td>Valor total do Montante: R$"+dec.format(valorTotal2)+"</td></tr>"
             +"<td><br></td>"
             +"<tr><td>Valor do Juros ao Ano: R$"+dec.format(valorJuros2)+"</td></tr>"
             +"<td><br></td>"
@@ -152,6 +157,7 @@ public class Juros_SimplesServlet extends HttpServlet {
             +"<div class='flex-container'>"
             +"</body>"
             +"</html>");
+            }
         }
     }
 
