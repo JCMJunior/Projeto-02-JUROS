@@ -7,6 +7,7 @@ package br.com.fatecpg.ads.poo.grupo06.juros;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,13 +69,12 @@ public class Juros_SimplesServlet extends HttpServlet {
             + "<li><a href='home#team'>EQUIPE</a></li>"
             + "</ul>"
             + "</div>"
-            +"</div><!--/.container-->"
-            +"</nav><!--/nav-->		"
-            +"</header><!--/header-->	"
+            +"</div>"
+            +"</nav>"
+            +"</header>"
             +"<div class='slider'>		"
             +"<div id='about-slider'>"
             +"<div id='carousel-slider' class='carousel slide' data-ride='carousel'>"
-            +"<!-- Indicators -->"
             +"<ol class='carousel-indicators visible-xs'>"
             +"<li data-target='#carousel-slider' data-slide-to='0' class='active'></li>"
             +"<li data-target='#carousel-slider' data-slide-to='1'></li>"
@@ -96,10 +96,10 @@ public class Juros_SimplesServlet extends HttpServlet {
             +"<a class='right carousel-control hidden-xs'href='#carousel-slider' data-slide='next'>"
             +"<i class='fa fa-angle-right'></i> "
             +"</a>"
-            +"</div> <!--/#carousel-slider-->"
+            +"</div>"
             +"</br>"
             +"<div class='flex-container'>"
-            +"<center><table style='text-align:right; font-size:20px'>"
+            +"<center><form><table style='text-align:right; font-size:20px'>"
             +"<td><br></td>"
             +"<tr><td>Valor Inicial: </td><td> <input type='text' name='valorIni'/></td></tr>"
             +"<td><br></td>"
@@ -110,6 +110,7 @@ public class Juros_SimplesServlet extends HttpServlet {
             +"<tr><td colspan='2'><center><input type='submit' value='Calcular'/><center></td></tr>"
             +"<td><br></td>"
             +"");
+            DecimalFormat dec = new DecimalFormat("###,##0.00");
             try{
                 valorIni = Double.parseDouble(request.getParameter("valorIni"));
                 percent = Double.parseDouble(request.getParameter("percent"));
@@ -117,13 +118,18 @@ public class Juros_SimplesServlet extends HttpServlet {
             }catch(Exception ex){}
             String numero ;
             valorTotal1 = valorIni+(valorIni*(percent/100)*numMes);
-            valorJuros1 = (valorIni*(percent/100)*numMes); 
-            out.println("<tr><td>Valor total do Montante: R$"+valorTotal1+"</td></tr>"
+            valorJuros1 = (valorIni*(percent/100)*numMes)/numMes;
+            if (valorTotal1!=0 && valorJuros1!=0){            
+            out.println("<center><table style='text-align:right;font-size:20px'>"
+            + "<tr><td>Valor total do Montante: R$ "+dec.format(valorTotal1)+"</td></tr>"
             +"<td><br></td>"
-            +"<tr><td>Valor do Juros ao Mês: R$"+valorJuros1+"</td></tr>"
-            +"<td><br></td>"
+            +"<tr><td>Valor do Juros ao Mês: R$ "+dec.format(valorJuros1)+"</td></tr>"
+            +"<td><br></td>");
+                    }
+            out.print("</div>");
             //Calculo do Juros ao Ano
             
+            out.println("<div>"
             +"<h1>Cálculo de Juros ao Ano</h1>"
             +"<center><form><table style='text-align:right; font-size:20px'>"
             +"<td><br></td>"
@@ -136,18 +142,22 @@ public class Juros_SimplesServlet extends HttpServlet {
             +"<tr><td colspan='2'><center><input type='submit' value='Calcular'/><center></td></tr>"
             +"<td><br></td>");        
             try{
-                valorIni2 = Double.parseDouble(request.getParameter("percent2"));
+                valorIni2 = Double.parseDouble(request.getParameter("valorIni2"));
                 percent2 = Double.parseDouble(request.getParameter("percent2"));
                 numDia = Double.parseDouble(request.getParameter("numDia"));
             }catch(Exception ex){}
             valorTotal2 = valorIni2+(valorIni2*((percent2/100)*(numDia/365)));
             valorJuros2 = valorIni2*((percent2/100)*(numDia/365));
-           out.println("<tr><td>Valor total do Montante: R$"+valorTotal2+"</td></tr>"
+            if (valorTotal2!=0 && valorJuros2!=0){
+           out.println("<center><table style='text-align:right;font-size:20px'>"
+            + "<tr><td>Valor total do Montante: R$"+dec.format(valorTotal2)+"</td></tr>"
             +"<td><br></td>"
-            +"<tr><td>Valor do Juros ao Ano: R$"+valorJuros2+"</td></tr>"
-            +"<td><br></td>"
-            +"</br>"
-            +"<div class='flex-container'>"
+            +"<tr><td>Valor do Juros ao Ano: R$"+dec.format(valorJuros2)+"</td></tr>"
+            +"<td><br></td>");
+            
+            }
+            out.print("</div>");
+            out.println("</br>"
             +"</body>"
             +"</html>");
         }

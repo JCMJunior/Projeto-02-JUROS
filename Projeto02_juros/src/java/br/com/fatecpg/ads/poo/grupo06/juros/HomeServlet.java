@@ -50,7 +50,7 @@ public class HomeServlet extends HttpServlet {
                     + "</button>"
                     +"<div class='collapse navbar-collapse navbar-left'>"
                     +"<ul class='nav navbar-nav'>"
-                    +"<li class='active'><a >CALCULADORA JUROS </a></li>"                    
+                    +"<li class='active' ><a >CALCULADORA JUROS </a></li>"                    
                     +"</ul>"
                     +"</div>"
                     + "</div>"
